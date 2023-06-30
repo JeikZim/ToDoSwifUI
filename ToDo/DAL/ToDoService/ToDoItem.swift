@@ -11,11 +11,13 @@ struct ToDoItem: Identifiable, Hashable {
     let id: String
     let date: Date
     var content: String
+    var isCompleted: Bool
     
     init (id: String = UUID().uuidString, content: String) {
         self.id = id
         self.content = content
         self.date = Date()
+        self.isCompleted = false
     }
 }
 

@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import Combine
-import SwiftUI
 
 class EditToDoItemViewModel: ObservableObject {
     
@@ -46,36 +44,41 @@ class EditToDoItemViewModel: ObservableObject {
         }
         
         ToDoService.instance.removeItem(byId: item.id)
-
+        
         onEnded()
     }
-    
-//    init(editorMode: EditorToDoListMode? = nil) {
-//        if let editorMode = editorMode {
-//            self.editorMode = editorMode
-//        }
-//        else {
-//            self.editorMode = .creating
-//        }
-//
-//        switch editorMode {
-//        case .creating:
-//            self.content = ""
-//        case .editinig(let item):
-//            self.content = item.content
-//        case .none:
-//            self.content = ""
-//        }
-//    }
-//
-//    func updateData(_ editorMode: EditorToDoListMode) -> Void {
-//        self.editorMode = editorMode
-//
-//        switch editorMode {
-//        case .editinig(let item):
-//            self.content = item.content
-//        case .creating:
-//            self.content = content
-//        }
-//    }
 }
+
+/*
+ 
+    init(editorMode: EditorToDoListMode? = nil) {
+        if let editorMode = editorMode {
+            self.editorMode = editorMode
+        }
+        else {
+            self.editorMode = .creating
+        }
+
+        switch editorMode {
+        case .creating:
+            self.content = ""
+        case .editinig(let item):
+            self.content = item.content
+        case .none:
+            self.content = ""
+        }
+    }
+
+    func updateData(_ editorMode: EditorToDoListMode) -> Void {
+        self.editorMode = editorMode
+
+        switch editorMode {
+        case .editinig(let item):
+            self.content = item.content
+        case .creating:
+            self.content = content
+        }
+    }
+}
+ 
+ */

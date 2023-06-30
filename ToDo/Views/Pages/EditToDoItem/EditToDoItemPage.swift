@@ -65,7 +65,7 @@ struct EditToDoItemPage: View {
 struct EditToDoItemPage_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            EditToDoItemPage(mode: .edit(item: ToDoItem.mockItem1()), onEnded: {  })
+            EditToDoItemPage(mode: .create, onEnded: {  })
         }
     }
 }

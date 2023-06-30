@@ -17,11 +17,15 @@ struct EditItemForm: View {
     var body: some View {
         VStack {
             TextEditor(text: $content)
+                .padding()
             
             Spacer()
             
-            Button(saveButtonTitle, action: saveAction)
-                .disabled(content.isEmpty)
+            Button(action: saveAction, label: {
+                Text(saveButtonTitle)
+                    .font(.title3)
+            })
+            .disabled(content.isEmpty)
         }
         
     }

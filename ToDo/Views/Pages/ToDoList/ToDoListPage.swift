@@ -29,25 +29,55 @@ struct ToDoListPage: View {
                             onEnded: {editingItem = nil}
                         )
                     }
-                    
                 )
                 
                 VStack {
                     Spacer()
                     
-                    NavigationLink(
-                        "Add new note",
-                        destination: EditToDoItemPage(
-                            mode: .create,
-                            onEnded: { creationOpened = false }
-                        ),
-                        isActive: $creationOpened
-                    )
+                    ZStack {
+                        bottomLGradient()
+                        
+                        NavigationLink(
+                            destination: EditToDoItemPage(
+                                mode: .create,
+                                onEnded: { creationOpened = false }),
+                            isActive: $creationOpened,
+                            label: addButtonLabel)
+                    }
+                    .offset(y: 40)
                 }
             }
             .navigationTitle("To Do")
         }
     }
+    
+    private func addButtonLabel() -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 100)
+                .foregroundColor(.white.opacity(0.85))
+                .frame(width: 148, height: 36)
+            
+            Text("Add new note")
+                .font(.title3)
+        }
+        .offset(y: -8)
+    }
+    
+    private func bottomLGradient() -> some View {
+        LinearGradient(
+            colors: [
+                .white.opacity(0.0),
+                .white.opacity(0.25),
+                .white.opacity(0.75),
+                .white.opacity(1.5)
+            ],
+            startPoint: .top,
+            endPoint: .bottom
+        )
+        .frame(height: 80)
+    }
+    
+    
 }
 
 #if DEBUG
