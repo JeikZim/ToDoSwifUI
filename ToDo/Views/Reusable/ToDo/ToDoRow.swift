@@ -18,24 +18,29 @@ struct ToDoItemRow: View {
     
     var body: some View {
         ZStack {
-            if viewModel.item.isCompleted {
-                rowBackground()
-            } else {
-                rowBackground()
-                    .shadow(color: .black.opacity(0.15), radius: 4, x: 0,y: 2)
-            }
+            rowBackground()
+                .shadow(color: .black.opacity(0.15), radius: 4, x: 0,y: 2)
+//            if viewModel.item.isCompleted {
+//                rowBackground()
+//            } else {
+//                rowBackground()
+//                    .shadow(color: .black.opacity(0.15), radius: 4, x: 0,y: 2)
+//            }
             
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    if viewModel.item.isCompleted {
-                        titleText(color: .black.opacity(0.25))
-                        
-                        subtitleText(color: .black.opacity(0.25))
-                    } else {
-                        titleText()
-                        
-                        subtitleText()
-                    }
+                    titleText()
+                    
+                    subtitleText()
+//                    if viewModel.item.isCompleted {
+//                        titleText(color: .black.opacity(0.25))
+//
+//                        subtitleText(color: .black.opacity(0.25))
+//                    } else {
+//                        titleText()
+//
+//                        subtitleText()
+//                    }
                 }
                 .padding()
                 

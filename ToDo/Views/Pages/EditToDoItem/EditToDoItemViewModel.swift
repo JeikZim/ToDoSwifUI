@@ -11,6 +11,7 @@ class EditToDoItemViewModel: ObservableObject {
     
     let mode: EditToDoItemMode
     let onEnded: () -> Void
+    var completion: Bool = false
     
     @Published
     var content: String = ""
@@ -19,8 +20,8 @@ class EditToDoItemViewModel: ObservableObject {
         self.mode = mode
         self.onEnded = onEnded
         
-        // !
         if case .edit(let item) = mode {
+            completion = item.isCompleted
             content = item.content
         }
     }

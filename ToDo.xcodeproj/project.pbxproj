@@ -24,6 +24,9 @@
 		442349092A45BEC5001DFC4B /* EditItemForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442349082A45BEC5001DFC4B /* EditItemForm.swift */; };
 		442418912A4EE6E100C6B547 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442418902A4EE6E100C6B547 /* CheckBox.swift */; };
 		442418932A4EEA6800C6B547 /* ToDoItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442418922A4EEA6800C6B547 /* ToDoItemViewModel.swift */; };
+		4445A1712A544989007539DE /* SortingRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4445A1702A544989007539DE /* SortingRow.swift */; };
+		44B7CDE12A530A2C00F28CC6 /* SortingMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B7CDE02A530A2C00F28CC6 /* SortingMethods.swift */; };
+		44B7CDE32A530A8C00F28CC6 /* SortingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B7CDE22A530A8C00F28CC6 /* SortingList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +48,9 @@
 		442349082A45BEC5001DFC4B /* EditItemForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemForm.swift; sourceTree = "<group>"; };
 		442418902A4EE6E100C6B547 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		442418922A4EEA6800C6B547 /* ToDoItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemViewModel.swift; sourceTree = "<group>"; };
+		4445A1702A544989007539DE /* SortingRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingRow.swift; sourceTree = "<group>"; };
+		44B7CDE02A530A2C00F28CC6 /* SortingMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingMethods.swift; sourceTree = "<group>"; };
+		44B7CDE22A530A8C00F28CC6 /* SortingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +131,7 @@
 		442081A72A444A9800D3F18B /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				44B7CDDF2A530A1D00F28CC6 /* Sorting */,
 				442081AA2A44544A00D3F18B /* EditToDoItem */,
 				442081A92A44544300D3F18B /* ToDoList */,
 			);
@@ -202,6 +209,16 @@
 			path = Misc;
 			sourceTree = "<group>";
 		};
+		44B7CDDF2A530A1D00F28CC6 /* Sorting */ = {
+			isa = PBXGroup;
+			children = (
+				44B7CDE02A530A2C00F28CC6 /* SortingMethods.swift */,
+				44B7CDE22A530A8C00F28CC6 /* SortingList.swift */,
+				4445A1702A544989007539DE /* SortingRow.swift */,
+			);
+			path = Sorting;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -277,10 +294,13 @@
 				442033C32A431F570047BF81 /* ToDoList.swift in Sources */,
 				442081B52A44554E00D3F18B /* EditToDoItemViewModel.swift in Sources */,
 				442081A32A44116900D3F18B /* Date.swift in Sources */,
+				44B7CDE32A530A8C00F28CC6 /* SortingList.swift in Sources */,
 				442081A62A44166500D3F18B /* MainView.swift in Sources */,
 				442033C12A431F570047BF81 /* ToDoApp.swift in Sources */,
 				442081B72A44555E00D3F18B /* EditToDoItemPage.swift in Sources */,
 				442418932A4EEA6800C6B547 /* ToDoItemViewModel.swift in Sources */,
+				44B7CDE12A530A2C00F28CC6 /* SortingMethods.swift in Sources */,
+				4445A1712A544989007539DE /* SortingRow.swift in Sources */,
 				442033D12A431FC90047BF81 /* ToDoRow.swift in Sources */,
 				442033D32A43201D0047BF81 /* ToDoService.swift in Sources */,
 				442418912A4EE6E100C6B547 /* CheckBox.swift in Sources */,

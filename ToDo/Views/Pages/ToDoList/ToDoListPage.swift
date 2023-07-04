@@ -13,25 +13,31 @@ struct ToDoListPage: View {
     var creationOpened: Bool = false
     @State
     var editingItem: ToDoItem?
+    @State
+    var modalIsOpened: Bool = false
     
     @StateObject
     var viewModel = ToDoListViewModel()
     
     var body: some View {
         NavigationView {
-            ZStack {
+                ZStack {
                 ToDoItemsList(
-                    items: viewModel.toDoItems,
+                    modalIsOpened: $modalIsOpened,
                     selectedItem: $editingItem,
+                    sortingMethod: $viewModel.sortingMethod,
+                    sortingModes: $viewModel.sortingMode,
                     itemDestination: { item in
                         EditToDoItemPage(
                             mode: .edit(item: item),
                             onEnded: {editingItem = nil}
                         )
-                    }
+                    },
+                    items: viewModel.toDoItems
                 )
-                
+    
                 VStack {
+                    
                     Spacer()
                     
                     ZStack {
@@ -46,6 +52,25 @@ struct ToDoListPage: View {
                     }
                     .offset(y: 40)
                 }
+                    
+                if modalIsOpened {
+                    ZStack {
+                        Button(action: {
+                            modalIsOpened = false
+                        }, label: {
+                            Color.gray
+                                .opacity(0.2)
+                                .ignoresSafeArea(.all)
+                        })
+                        .buttonStyle(.plain)
+                        
+                        SortingList(
+                            chosenSortingMethod: $viewModel.sortingMethod,
+                            chosenSortingMode: $viewModel.sortingMode
+                        )
+                        
+                    }
+                }
             }
             .navigationTitle("To Do")
         }
@@ -54,7 +79,7 @@ struct ToDoListPage: View {
     private func addButtonLabel() -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 100)
-                .foregroundColor(.white.opacity(0.85))
+                .foregroundColor(.white.opacity(0.25))
                 .frame(width: 148, height: 36)
             
             Text("Add new note")
@@ -76,9 +101,17 @@ struct ToDoListPage: View {
         )
         .frame(height: 80)
     }
-    
-    
 }
+//
+//struct SortingMode {
+//    let title: String
+//    let method: SortingMethods
+//    
+//    init (_ title: String, sortingMethod: SortingMethods) {
+//        self.title = title
+//        self.method = sortingMethod
+//    }
+//}
 
 #if DEBUG
 struct ToDoListPage_Previews: PreviewProvider {

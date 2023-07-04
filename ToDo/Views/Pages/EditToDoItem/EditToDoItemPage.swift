@@ -19,16 +19,25 @@ struct EditToDoItemPage: View {
     
     var body: some View {
         EditItemForm(
-            content: $viewModel.content, saveButtonTitle: viewModel.mode.isEditing ? "Edit" : "Add", saveAction: viewModel.save
+            content: $viewModel.content,
+            saveButtonTitle: viewModel.mode.isEditing ? "Edit" : "Add",
+            saveAction: viewModel.save
         )
         .navigationTitle(viewModel.mode.isEditing ? "Note editing" : "New note")
         .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                if viewModel.completion {
+                    Text("Complete")
+                        .font(.system(size: 16.5, weight: .regular))
+                        .foregroundColor(.green)
+                    
+                }
+            }
             ToolbarItem(placement: .navigationBarTrailing) {
                 if viewModel.mode.isEditing {
                     Button("Delete", action: viewModel.delete)
                         .font(.system(size: 16.5, weight: .regular))
                         .foregroundColor(.red)
-                    
                 }
             }
         }

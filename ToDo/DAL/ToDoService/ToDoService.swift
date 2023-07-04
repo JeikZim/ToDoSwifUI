@@ -11,20 +11,24 @@ class ToDoService {
     
     @Published
     private(set) var items: [ToDoItem] = [
-        ToDoItem(content: "Some words ehrgiuhergsherughsieuhrgiusehrgiusehriguheirugheiurghiseuhrgiusehrg"),
-        ToDoItem(content: "Some words ehrgiuhergsherughsieuhrgiusehrgiusehriguheirugheiurghiseuhrgiusehrg"),
-        ToDoItem(content: "Some words ehrgiuhergsherughsieuhrgiusehrgiusehriguheirugheiurghiseuhrgiusehrg"),
-        ToDoItem(content: "Some words ehrgiuhergsherughsieuhrgiusehrgiusehriguheirugheiurghiseuhrgiusehrg"),
-        ToDoItem(content: "Some words ehrgiuhergsherughsieuhrgiusehrgiusehriguheirugheiurghiseuhrgiusehrg"),
-        ToDoItem(content: "Some words ehrgiuhergsherughsieuhrgiusehrgiusehriguheirugheiurghiseuhrgiusehrg"),
-        ToDoItem(content: "Some words ehrgiuhergsherughsieuhrgiusehrgiusehriguheirugheiurghiseuhrgiusehrg"),
-        ToDoItem(content: "Some words ehrgiuhergsherughsieuhrgiusehrgiusehriguheirugheiurghiseuhrgiusehrg"),
-        ToDoItem(content: "Some words ehrgiuhergsherughsieuhrgiusehrgiusehriguheirugheiurghiseuhrgiusehrg"),
-        ToDoItem(content: "Some words ehrgiuhergsherughsieuhrgiusehrgiusehriguheirugheiurghiseuhrgiusehrg"),
-        ToDoItem(content: "Some words ehrgiuhergsherughsieuhrgiusehrgiusehriguheirugheiurghiseuhrgiusehrg"),
-        ToDoItem(content: "Some words ehrgiuhergsherughsieuhrgiusehrgiusehriguheirugheiurghiseuhrgiusehrg"),
-        ToDoItem(content: "Some words ehrgiuhergsherughsieuhrgiusehrgiusehriguheirugheiurghiseuhrgiusehrg"),
-        ToDoItem(content: "Some words ehrgiuhergsherughsieuhrgiusehrgiusehriguheirugheiurghiseuhrgiusehrg")
+        ToDoItem(content: "Aome words"),
+        ToDoItem(content: "Bome words"),
+        ToDoItem(content: "Come words"),
+        ToDoItem(content: "Dome words"),
+        ToDoItem(content: "Eome words"),
+        ToDoItem(content: "Fome words"),
+        ToDoItem(content: "Gome words"),
+        ToDoItem(content: "Some words"),
+        ToDoItem(content: "Some words"),
+        ToDoItem(content: "Some words"),
+        ToDoItem(content: "Some words"),
+        ToDoItem(content: "Some words"),
+        ToDoItem(content: "Some words"),
+        ToDoItem(content: "Some words"),
+        ToDoItem(content: "Some words"),
+        ToDoItem(content: "Some words"),
+        ToDoItem(content: "Some words"),
+        ToDoItem(content: "Some words")
     ]
     
     private init() { }

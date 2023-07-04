@@ -16,6 +16,11 @@ struct CheckBox: View {
     
     var body: some View {
         let strokeColor: Color = .black.opacity(0.25)
+        let primaryColor: Color = .white
+//        let strokeColorSet: Color = .black.opacity(0.175)
+//        let strokeColorUnset: Color = .black.opacity(0.25)
+            
+        
 //        Color(
 //            red: 0,
 //            green: 0,
@@ -25,16 +30,22 @@ struct CheckBox: View {
         
         Button(action: action, label: {
             ZStack {
-                RoundedRectangle(cornerRadius: 4)
-                    .strokeBorder(strokeColor, lineWidth: 1)
-                    .foregroundColor(.white)
+                primaryColor
                     .frame(width: size, height: size)
+                RoundedRectangle(cornerRadius: 4)
+                    .strokeBorder(
+                        strokeColor,
+//                        isSet ? strokeColorSet : strokeColorUnset,
+                        lineWidth: 1)
+                    .frame(width: size, height: size)
+                    .foregroundColor(primaryColor)
                 
                 Image(systemName: isSet ? "checkmark" : "checkmark")
-                    .foregroundColor(isSet ? .green : .white)
+                    .foregroundColor(isSet ? .green : primaryColor)
                     .padding(.all, 24)
             }
         })
+        .buttonStyle(PlainButtonStyle())
     }
 }
 
