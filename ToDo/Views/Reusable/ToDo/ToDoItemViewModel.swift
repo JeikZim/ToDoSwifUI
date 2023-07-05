@@ -10,9 +10,8 @@ import Foundation
 class ToDoItemViewModel: ObservableObject {
     @Published
     var item: ToDoItem
-    @Published
+    
     var toggleCompletion: () -> Void
-    @Published
     var toggleFavorite: () -> Void
     
     init(item: ToDoItem) {

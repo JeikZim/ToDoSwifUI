@@ -10,7 +10,8 @@ import Combine
 
 struct ToDoItemsList<ToDoItemDestinationView: View>: View {
     
-    @Binding var modalIsOpened: Bool
+    @Binding var modalSortIsOpened: Bool
+    @Binding var modalFiltersIsOpened: Bool
     @Binding var selectedItem: ToDoItem?
     
     var viewModel: ToDoListViewModel
@@ -23,11 +24,17 @@ struct ToDoItemsList<ToDoItemDestinationView: View>: View {
         } else {
             ScrollView {
                 HStack(spacing: 14) {
+                    filterTextButton()
+                        .padding(.leading)
+                    
+                    filersButton()
+                    
                     Spacer()
                     
-                    sortButton()
+                    sortTextButton()
                     
                     sortingChoiceButton()
+                        .padding(.trailing)
                 }
                 .frame(height: 36)
                 
@@ -38,15 +45,6 @@ struct ToDoItemsList<ToDoItemDestinationView: View>: View {
             .onChange(of: viewModel.sortingMode, perform: sortingHandler)
         }
     }
-    
-    private func sortingChoiceButton() -> some View {
-        IconButton(
-            imageName: viewModel.sortingMode.rawValue,
-            action: { modalIsOpened.toggle() }
-        )
-        .padding(.trailing)
-    }
-    
     
     private func toDoListView() -> some View {
         LazyVStack {
@@ -63,12 +61,34 @@ struct ToDoItemsList<ToDoItemDestinationView: View>: View {
         .padding()
     }
     
-    private func sortButton() -> some View {
-        Button(action: { modalIsOpened.toggle() }, label: {
-            Text("Sort")
-                .font(.system(size: 24, weight: .regular))
+    private func filterTextButton() -> some View {
+        Button(action: { modalSortIsOpened.toggle() }, label: {
+            Text("Filters")
+                .font(.system(size: 22, weight: .regular))
         })
         .buttonStyle(PlainButtonStyle())
+    }
+    
+    private func sortTextButton() -> some View {
+        Button(action: { modalSortIsOpened.toggle() }, label: {
+            Text("Sort")
+                .font(.system(size: 22, weight: .regular))
+        })
+        .buttonStyle(PlainButtonStyle())
+    }
+    
+    private func sortingChoiceButton() -> some View {
+        IconButton(
+            imageName: viewModel.sortingMode.rawValue,
+            action: { modalFiltersIsOpened.toggle() }
+        )
+    }
+    
+    private func filersButton() -> some View {
+        IconButton(
+            imageName: "flag",
+            action: { modalFiltersIsOpened.toggle() }
+        )
     }
     
     private func emptyTitle() -> some View {
@@ -87,11 +107,14 @@ struct ToDoItemsList_Previews: PreviewProvider {
     @State
     static var selectedItem: ToDoItem? = .mockItem1()
     @State
-    static var modalIsOpened: Bool = true
+    static var modalSortIsOpened: Bool = false
+    @State
+    static var modalFiltersIsOpened: Bool = false
 
     static var previews: some View {
         ToDoItemsList(
-            modalIsOpened: $modalIsOpened,
+            modalSortIsOpened: $modalSortIsOpened,
+            modalFiltersIsOpened: $modalFiltersIsOpened,
             selectedItem: $selectedItem,
             viewModel: ToDoListViewModel(),
             itemDestination: {_ in EmptyView()}

@@ -14,7 +14,9 @@ struct ToDoListPage: View {
     @State
     var editingItem: ToDoItem?
     @State
-    var modalIsOpened: Bool = false
+    var modalSortIsOpened: Bool = false
+    @State
+    var modalFiltersIsOpened: Bool = false
     
     @StateObject
     var viewModel = ToDoListViewModel()
@@ -23,7 +25,8 @@ struct ToDoListPage: View {
         NavigationView {
                 ZStack {
                 ToDoItemsList(
-                    modalIsOpened: $modalIsOpened,
+                    modalSortIsOpened: $modalSortIsOpened,
+                    modalFiltersIsOpened: $modalFiltersIsOpened,
                     selectedItem: $editingItem,
                     viewModel: viewModel,
                     itemDestination: { item in
@@ -51,16 +54,11 @@ struct ToDoListPage: View {
                     .offset(y: 40)
                 }
                     
-                if modalIsOpened {
+                if modalSortIsOpened {
                     ZStack {
-                        Button(action: {
-                            modalIsOpened = false
-                        }, label: {
-                            Color.gray
-                                .opacity(0.2)
-                                .ignoresSafeArea(.all)
-                        })
-                        .buttonStyle(.plain)
+                        cancallableBackground {
+                            modalSortIsOpened = false
+                        }
                         
                         SortingList(
                             chosenSortingMethod: $viewModel.sortingMethod,
@@ -69,9 +67,30 @@ struct ToDoListPage: View {
                         
                     }
                 }
+                else if modalSortIsOpened {
+                    ZStack {
+                        cancallableBackground {
+                            modalFiltersIsOpened = false
+                        }
+                        
+//                        SortingList(
+//                            chosenSortingMethod: $viewModel.sortingMethod,
+//                            chosenSortingMode: $viewModel.sortingMode
+//                        )
+                    }
+                }
             }
             .navigationTitle("To Do")
         }
+    }
+    
+    private func cancallableBackground( action: @escaping () -> Void) -> some View {
+        Button(action: action, label: {
+            Color.gray
+                .opacity(0.2)
+                .ignoresSafeArea(.all)
+        })
+        .buttonStyle(.plain)
     }
     
     private func addButtonLabel() -> some View {

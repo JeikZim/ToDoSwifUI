@@ -24,7 +24,7 @@ struct IconButton: View  {
     
     init(
         imageName: String,
-        isChosen: Bool = true,
+        isChosen: Bool = false,
         action: @escaping () -> Void = {},
         size: CGFloat = 36,
         radius: CGFloat = 8,
