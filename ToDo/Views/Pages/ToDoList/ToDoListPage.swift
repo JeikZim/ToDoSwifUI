@@ -25,15 +25,13 @@ struct ToDoListPage: View {
                 ToDoItemsList(
                     modalIsOpened: $modalIsOpened,
                     selectedItem: $editingItem,
-                    sortingMethod: $viewModel.sortingMethod,
-                    sortingModes: $viewModel.sortingMode,
+                    viewModel: viewModel,
                     itemDestination: { item in
                         EditToDoItemPage(
                             mode: .edit(item: item),
                             onEnded: {editingItem = nil}
                         )
-                    },
-                    items: viewModel.toDoItems
+                    }
                 )
     
                 VStack {
@@ -79,7 +77,7 @@ struct ToDoListPage: View {
     private func addButtonLabel() -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 100)
-                .foregroundColor(.white.opacity(0.25))
+                .foregroundColor(.white.opacity(0.5))
                 .frame(width: 148, height: 36)
             
             Text("Add new note")
@@ -92,9 +90,9 @@ struct ToDoListPage: View {
         LinearGradient(
             colors: [
                 .white.opacity(0.0),
-                .white.opacity(0.25),
-                .white.opacity(0.75),
-                .white.opacity(1.5)
+                .white.opacity(0.65),
+                .white.opacity(0.85),
+                .white.opacity(1.05)
             ],
             startPoint: .top,
             endPoint: .bottom
@@ -102,16 +100,6 @@ struct ToDoListPage: View {
         .frame(height: 80)
     }
 }
-//
-//struct SortingMode {
-//    let title: String
-//    let method: SortingMethods
-//    
-//    init (_ title: String, sortingMethod: SortingMethods) {
-//        self.title = title
-//        self.method = sortingMethod
-//    }
-//}
 
 #if DEBUG
 struct ToDoListPage_Previews: PreviewProvider {

@@ -13,9 +13,9 @@ struct SortingList: View {
     @Binding var chosenSortingMode: SortingModes
     
     var sortingItems: [SortingItem] = [
-        SortingItem(title: "Alphabet", hasModes: true, sortingMethod: .alphabet),
-        SortingItem(title: "By date", hasModes: true, sortingMethod: .date),
-        SortingItem(title: "Basic", hasModes: false, sortingMethod: .none)
+        SortingItem(sortingMethod: .alphabet, hasModes: true),
+        SortingItem(sortingMethod: .date, hasModes: true),
+        SortingItem(sortingMethod: .none, hasModes: false)
     ]
     
     var body: some View {
@@ -31,12 +31,15 @@ struct SortingList: View {
                         chosenSortingMethod: $chosenSortingMethod,
                         chosenSortingMode: $chosenSortingMode
                     )
-                    Divider()
+                    
+                    if item.id != SortingItem.count {
+                        Divider()
+                    }
                 }
             }
         }
         .cornerRadius(9)
-        .frame(width: 240, height: 240)
+        .frame(width: 260, height: 240)
         .offset(y: -32)
     }
 }
@@ -46,9 +49,15 @@ struct SortingItem: Identifiable {
     static var count: Int = 0
     
     var id: Int = incrementCount()
-    var title: String
-    var hasModes: Bool
     var sortingMethod: SortingMethods
+    var hasModes: Bool
+    var title: String
+    
+    init(sortingMethod: SortingMethods, hasModes: Bool) {
+        self.sortingMethod = sortingMethod
+        self.hasModes = hasModes
+        self.title = sortingMethod.rawValue
+    }
     
     private static func incrementCount() -> Int {
         count += 1

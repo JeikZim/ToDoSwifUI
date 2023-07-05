@@ -27,7 +27,6 @@ struct EditItemForm: View {
             })
             .disabled(content.isEmpty)
         }
-        
     }
 }
 

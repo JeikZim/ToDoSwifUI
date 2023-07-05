@@ -22,8 +22,10 @@
 		442081B92A445A2B00D3F18B /* EditToDoListMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442081B82A445A2B00D3F18B /* EditToDoListMode.swift */; };
 		442349062A4567D0001DFC4B /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442349052A4567D0001DFC4B /* ToDoItem.swift */; };
 		442349092A45BEC5001DFC4B /* EditItemForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442349082A45BEC5001DFC4B /* EditItemForm.swift */; };
-		442418912A4EE6E100C6B547 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442418902A4EE6E100C6B547 /* CheckBox.swift */; };
+		442418912A4EE6E100C6B547 /* CompleteCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442418902A4EE6E100C6B547 /* CompleteCheckBox.swift */; };
 		442418932A4EEA6800C6B547 /* ToDoItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442418922A4EEA6800C6B547 /* ToDoItemViewModel.swift */; };
+		442EF5E72A55701B005FCA4C /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442EF5E62A55701B005FCA4C /* IconButton.swift */; };
+		442EF5ED2A557938005FCA4C /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442EF5EC2A557938005FCA4C /* FavoriteButton.swift */; };
 		4445A1712A544989007539DE /* SortingRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4445A1702A544989007539DE /* SortingRow.swift */; };
 		44B7CDE12A530A2C00F28CC6 /* SortingMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B7CDE02A530A2C00F28CC6 /* SortingMethods.swift */; };
 		44B7CDE32A530A8C00F28CC6 /* SortingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B7CDE22A530A8C00F28CC6 /* SortingList.swift */; };
@@ -46,8 +48,10 @@
 		442081B82A445A2B00D3F18B /* EditToDoListMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditToDoListMode.swift; sourceTree = "<group>"; };
 		442349052A4567D0001DFC4B /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 		442349082A45BEC5001DFC4B /* EditItemForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemForm.swift; sourceTree = "<group>"; };
-		442418902A4EE6E100C6B547 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		442418902A4EE6E100C6B547 /* CompleteCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteCheckBox.swift; sourceTree = "<group>"; };
 		442418922A4EEA6800C6B547 /* ToDoItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemViewModel.swift; sourceTree = "<group>"; };
+		442EF5E62A55701B005FCA4C /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
+		442EF5EC2A557938005FCA4C /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		4445A1702A544989007539DE /* SortingRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingRow.swift; sourceTree = "<group>"; };
 		44B7CDE02A530A2C00F28CC6 /* SortingMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingMethods.swift; sourceTree = "<group>"; };
 		44B7CDE22A530A8C00F28CC6 /* SortingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingList.swift; sourceTree = "<group>"; };
@@ -131,7 +135,6 @@
 		442081A72A444A9800D3F18B /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				44B7CDDF2A530A1D00F28CC6 /* Sorting */,
 				442081AA2A44544A00D3F18B /* EditToDoItem */,
 				442081A92A44544300D3F18B /* ToDoList */,
 			);
@@ -142,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				442418962A4EF57500C6B547 /* Misc */,
+				44B7CDDF2A530A1D00F28CC6 /* Sorting */,
 				442418952A4EF56900C6B547 /* Editor */,
 				442418942A4EF55C00C6B547 /* ToDo */,
 			);
@@ -204,7 +208,8 @@
 		442418962A4EF57500C6B547 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
-				442418902A4EE6E100C6B547 /* CheckBox.swift */,
+				442418902A4EE6E100C6B547 /* CompleteCheckBox.swift */,
+				442EF5EC2A557938005FCA4C /* FavoriteButton.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -215,6 +220,7 @@
 				44B7CDE02A530A2C00F28CC6 /* SortingMethods.swift */,
 				44B7CDE22A530A8C00F28CC6 /* SortingList.swift */,
 				4445A1702A544989007539DE /* SortingRow.swift */,
+				442EF5E62A55701B005FCA4C /* IconButton.swift */,
 			);
 			path = Sorting;
 			sourceTree = "<group>";
@@ -291,6 +297,8 @@
 			files = (
 				442081B02A4454B600D3F18B /* ToDoListPage.swift in Sources */,
 				442081AE2A44549D00D3F18B /* ToDoListViewModel.swift in Sources */,
+				442EF5E72A55701B005FCA4C /* IconButton.swift in Sources */,
+				442EF5ED2A557938005FCA4C /* FavoriteButton.swift in Sources */,
 				442033C32A431F570047BF81 /* ToDoList.swift in Sources */,
 				442081B52A44554E00D3F18B /* EditToDoItemViewModel.swift in Sources */,
 				442081A32A44116900D3F18B /* Date.swift in Sources */,
@@ -303,7 +311,7 @@
 				4445A1712A544989007539DE /* SortingRow.swift in Sources */,
 				442033D12A431FC90047BF81 /* ToDoRow.swift in Sources */,
 				442033D32A43201D0047BF81 /* ToDoService.swift in Sources */,
-				442418912A4EE6E100C6B547 /* CheckBox.swift in Sources */,
+				442418912A4EE6E100C6B547 /* CompleteCheckBox.swift in Sources */,
 				442349062A4567D0001DFC4B /* ToDoItem.swift in Sources */,
 				442081B92A445A2B00D3F18B /* EditToDoListMode.swift in Sources */,
 				442349092A45BEC5001DFC4B /* EditItemForm.swift in Sources */,

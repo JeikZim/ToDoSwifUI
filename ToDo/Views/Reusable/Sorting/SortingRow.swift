@@ -36,16 +36,16 @@ struct SortingRow: View {
                 
                 if hasModes {
                     HStack {
-                        directionButton(
-                            "arrow.up",
+                        IconButton(
+                            imageName: SortingModes.ASC.rawValue,
                             isChosen: modeIsChosen && chosenSortingMode == .ASC,
                             action: {
                                 chosenSortingMethod = sortingMethod
                                 chosenSortingMode = .ASC
                             }
                         )
-                        directionButton(
-                            "arrow.down",
+                        IconButton(
+                            imageName: SortingModes.DESC.rawValue,
                             isChosen: modeIsChosen && chosenSortingMode == .DESC,
                             action: {
                                 chosenSortingMethod = sortingMethod
@@ -56,8 +56,8 @@ struct SortingRow: View {
                     .padding(.trailing)
                 }
                 else {
-                    directionButton(
-                        "circle",
+                    IconButton(
+                        imageName: SortingModes.none.rawValue,
                         isChosen: modeIsChosen,
                         action: {
                             chosenSortingMethod = sortingMethod
@@ -69,33 +69,6 @@ struct SortingRow: View {
             }
         }
         .frame(height: 80)
-    }
-    
-    private func directionButton(
-        _ imageName: String,
-        isChosen: Bool,
-        action: @escaping () -> Void
-    ) -> some View {
-        let size: CGFloat = 36
-        let radius: CGFloat = 8
-        var color: Color {
-            if isChosen {
-                return .gray.opacity(0.15)
-            }
-            return .gray.opacity(0.05)
-        }
-        
-        return Button {
-            action()
-        } label: {
-            ZStack {
-                RoundedRectangle(cornerRadius: radius)
-                    .frame(width: size,height: size)
-                    .foregroundColor(color)
-                Image(systemName: imageName)
-            }
-        }
-        .buttonStyle(PlainButtonStyle())
     }
 }
 

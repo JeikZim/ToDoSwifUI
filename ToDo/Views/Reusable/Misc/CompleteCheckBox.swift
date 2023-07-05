@@ -1,5 +1,5 @@
 //
-//  CheckBox.swift
+//  CompleteCheckBox.swift
 //  ToDo
 //
 //  Created by Руслан on 30.06.2023.
@@ -7,28 +7,22 @@
 
 import SwiftUI
 
-struct CheckBox: View {
-    var size: CGFloat
+struct CompleteCheckBox: View {
+    var size: CGFloat = 26
+    var fontSize: CGFloat = 20
     
-    @Binding
     var isSet: Bool
     var action: () -> Void
+    
+    var imageName: String = "checkmark"
     
     var body: some View {
         let strokeColor: Color = .black.opacity(0.25)
         let primaryColor: Color = .white
 //        let strokeColorSet: Color = .black.opacity(0.175)
 //        let strokeColorUnset: Color = .black.opacity(0.25)
-            
         
-//        Color(
-//            red: 0,
-//            green: 0,
-//            blue: 0,
-//            opacity: 0.35
-//        )
-        
-        Button(action: action, label: {
+//        Button(action: action, label: {
             ZStack {
                 primaryColor
                     .frame(width: size, height: size)
@@ -40,22 +34,26 @@ struct CheckBox: View {
                     .frame(width: size, height: size)
                     .foregroundColor(primaryColor)
                 
-                Image(systemName: isSet ? "checkmark" : "checkmark")
-                    .foregroundColor(isSet ? .green : primaryColor)
+                Image(systemName: imageName)
+                    .foregroundColor(isSet ? .green : primaryColor.opacity(0))
+                    .font(.system(size: fontSize))
                     .padding(.all, 24)
             }
-        })
-        .buttonStyle(PlainButtonStyle())
+            .onTapGesture {
+                action()
+            }
+//        })
+//        .buttonStyle(PlainButtonStyle())
     }
 }
 
 #if DEBUG
-struct CheckBox_Previews: PreviewProvider {
+struct CompleteCheckBox_Previews: PreviewProvider {
     @State
     static var isSet: Bool = false
     
     static var previews: some View {
-        CheckBox(size: 32, isSet: $isSet, action: {  })
+        CompleteCheckBox(size: 32, isSet: isSet, action: {  })
     }
 }
 #endif

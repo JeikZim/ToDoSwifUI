@@ -6,40 +6,51 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ToDoItemsList<ToDoItemDestinationView: View>: View {
     
     @Binding var modalIsOpened: Bool
     @Binding var selectedItem: ToDoItem?
     
-    @Binding var sortingMethod: SortingMethods
-    @Binding var sortingModes: SortingModes
-    
+    var viewModel: ToDoListViewModel
+        
     let itemDestination: (ToDoItem) -> ToDoItemDestinationView
-    let items: [ToDoItem]
-    
-    @State var itemsProjections: [ToDoItem] = []
     
     var body: some View {
-        if items.isEmpty {
+        if viewModel.toDoItems.isEmpty {
             emptyTitle()
         } else {
             ScrollView {
-                HStack(alignment: .top) {
+                HStack(spacing: 14) {
                     Spacer()
                     
                     sortButton()
+                    
+                    sortingChoiceButton()
                 }
-                .frame(height: 18)
+                .frame(height: 36)
                 
                 toDoListView()
             }
+            .onChange(of: viewModel.toDoItems, perform: sortingHandler)
+            .onChange(of: viewModel.sortingMethod, perform: sortingHandler)
+            .onChange(of: viewModel.sortingMode, perform: sortingHandler)
         }
     }
     
+    private func sortingChoiceButton() -> some View {
+        IconButton(
+            imageName: viewModel.sortingMode.rawValue,
+            action: { modalIsOpened.toggle() }
+        )
+        .padding(.trailing)
+    }
+    
+    
     private func toDoListView() -> some View {
         LazyVStack {
-            ForEach(itemsProjections) { item in
+            ForEach(viewModel.toDoItems) { item in
                 NavigationLink(
                     destination: itemDestination(item),
                     tag: item,
@@ -50,46 +61,13 @@ struct ToDoItemsList<ToDoItemDestinationView: View>: View {
             }
         }
         .padding()
-        .onAppear {
-            itemsProjections = items
-            
-            switch sortingMethod {
-            case .date:
-                switch sortingModes {
-                case .ASC:
-                    itemsProjections.sort(by: { $0.date < $1.date })
-                    
-                case .DESC:
-                    itemsProjections.sort(by: { $0.date > $1.date })
-                    
-                case .none:
-                    itemsProjections.sort(by: { $0.date > $1.date })
-                }
-            case .alphabet:
-                switch sortingModes {
-                case .ASC:
-                    itemsProjections.sort(by: { $0.content < $1.content })
-                    
-                case .DESC:
-                    itemsProjections.sort(by: { $0.content > $1.content })
-                    
-                case .none:
-                    itemsProjections.sort(by: { $0.content > $1.content })
-                }
-            case .none:
-                return
-            }
-        }
     }
     
     private func sortButton() -> some View {
-        Button(action: {
-            modalIsOpened = true
-        }, label: {
+        Button(action: { modalIsOpened.toggle() }, label: {
             Text("Sort")
-                .font(.system(size: 20, weight: .medium))
+                .font(.system(size: 24, weight: .regular))
         })
-        .padding(.trailing, 30)
         .buttonStyle(PlainButtonStyle())
     }
     
@@ -97,6 +75,10 @@ struct ToDoItemsList<ToDoItemDestinationView: View>: View {
         Text("List is empty")
             .font(.system(size: 24, weight: .bold))
             .foregroundColor(.gray)
+    }
+    
+    private func sortingHandler(_ eq: any Equatable)  {
+        viewModel.sort()
     }
 }
 
@@ -106,20 +88,13 @@ struct ToDoItemsList_Previews: PreviewProvider {
     static var selectedItem: ToDoItem? = .mockItem1()
     @State
     static var modalIsOpened: Bool = true
-    @State
-    static var sortingMethod: SortingMethods = .alphabet
-    @State
-    static var sortingMode: SortingModes = .DESC
-    
-    
+
     static var previews: some View {
         ToDoItemsList(
             modalIsOpened: $modalIsOpened,
             selectedItem: $selectedItem,
-            sortingMethod: $sortingMethod,
-            sortingModes: $sortingMode,
-            itemDestination: {_ in EmptyView()},
-            items: ToDoService.instance.items
+            viewModel: ToDoListViewModel(),
+            itemDestination: {_ in EmptyView()}
         )
     }
 }

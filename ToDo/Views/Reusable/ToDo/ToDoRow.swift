@@ -44,7 +44,9 @@ struct ToDoItemRow: View {
                 }
                 .padding()
                 
-                CheckBox(size: 32, isSet: $viewModel.item.isCompleted, action: viewModel.toggleCompletion)
+                FavoriteButton(isFavorite: viewModel.item.isFavorite, action: viewModel.toggleFavorite)
+                
+                CompleteCheckBox(isSet: viewModel.item.isCompleted, action: viewModel.toggleCompletion)
             }
         }
         .fixedSize(horizontal: false, vertical: true)

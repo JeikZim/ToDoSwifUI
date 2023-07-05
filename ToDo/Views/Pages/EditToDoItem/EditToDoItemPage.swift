@@ -9,6 +9,10 @@ import SwiftUI
 
 struct EditToDoItemPage: View {
     
+    var navigationTitle: String {
+        viewModel.mode.isEditing ? "Note editing" : "New note"
+    }
+    
     @StateObject
     var viewModel: EditToDoItemViewModel
     
@@ -18,55 +22,48 @@ struct EditToDoItemPage: View {
     }
     
     var body: some View {
+        let toolbarTextSize: CGFloat = 18
+        
         EditItemForm(
             content: $viewModel.content,
             saveButtonTitle: viewModel.mode.isEditing ? "Edit" : "Add",
-            saveAction: viewModel.save
+            saveAction: viewModel.saveContent
         )
-        .navigationTitle(viewModel.mode.isEditing ? "Note editing" : "New note")
+        .navigationTitle(navigationTitle)
+        .navigationBarBackButtonHidden(true)
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                if viewModel.completion {
-                    Text("Complete")
-                        .font(.system(size: 16.5, weight: .regular))
-                        .foregroundColor(.green)
-                    
+            ToolbarItem(placement: .navigationBarLeading) {
+                HStack {
+                    Image(systemName: "arrow.left")
+                    Text("Back")
+                        .font(.system(size: toolbarTextSize, weight: .medium))
                 }
+                .onTapGesture {
+                    viewModel.saveStates()
+                }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                FavoriteButton(
+                    fontSize: 18,
+                    isFavorite: viewModel.isFavorite,
+                    action: { viewModel.isFavorite.toggle() }
+                )
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                CompleteCheckBox(
+                    size: 24 ,fontSize: 14,
+                    isSet: viewModel.isCompleted,
+                    action: { viewModel.isCompleted.toggle() }
+                )
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 if viewModel.mode.isEditing {
                     Button("Delete", action: viewModel.delete)
-                        .font(.system(size: 16.5, weight: .regular))
+                        .font(.system(size: toolbarTextSize, weight: .regular))
                         .foregroundColor(.red)
                 }
             }
         }
-        
-        
-        
-//            VStack{
-//                TextEditor(text: $viewModel.content)
-//                    .onAppear {
-//                        viewModel.updateData(mode)
-//                    }
-//                switch editorMode {
-//                case .creating:
-//                    Button("Add") {
-//                        todoList.createItem(content: viewModel.content)
-//                        presentationMode.wrappedValue.dismiss()
-//                     }
-//                    .disabled(viewModel.content == "")
-//                    .navigationTitle("Create ToDo")
-//                case .editinig(let item):
-//                    Button("Edit") {
-//                        todoList.updateItem(byId: item.id, content: viewModel.content)
-//                        presentationMode.wrappedValue.dismiss()
-//                     }
-//                    .disabled(viewModel.content == "")
-//                    .navigationTitle("Edit ToDo")
-//                }
-//
-//            }
     }
 }
 

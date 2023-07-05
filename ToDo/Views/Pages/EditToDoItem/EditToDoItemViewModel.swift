@@ -11,28 +11,48 @@ class EditToDoItemViewModel: ObservableObject {
     
     let mode: EditToDoItemMode
     let onEnded: () -> Void
-    var completion: Bool = false
     
-    @Published
-    var content: String = ""
+    @Published var content: String = ""
+    @Published var isFavorite: Bool = false
+    @Published var isCompleted: Bool = false
     
     init(mode: EditToDoItemMode, onEnded: @escaping () -> Void) {
         self.mode = mode
         self.onEnded = onEnded
         
         if case .edit(let item) = mode {
-            completion = item.isCompleted
+            isCompleted = item.isCompleted
+            isFavorite = item.isFavorite
             content = item.content
         }
     }
     
-    func save() -> Void {
+    func saveStates() {
+        switch mode {
+        case .create:
+            onEnded()
+            return
+            
+        case .edit(let item):
+            ToDoService.instance.setFavorites(byItemId: item.id, newState: isFavorite)
+            
+            ToDoService.instance.setCompletion(byItemId: item.id, newState: isCompleted)
+                        
+        }
+        onEnded()
+    }
+    
+    func saveContent() -> Void {
         switch mode {
         case .create:
             ToDoService.instance.createItem(withContent: content)
             
         case .edit(let item):
             ToDoService.instance.updateItem(content, forItemWithId: item.id)
+            
+            ToDoService.instance.setFavorites(byItemId: item.id, newState: isFavorite)
+            
+            ToDoService.instance.setCompletion(byItemId: item.id, newState: isCompleted)
         }
         
         onEnded()
@@ -49,6 +69,20 @@ class EditToDoItemViewModel: ObservableObject {
         onEnded()
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
  
