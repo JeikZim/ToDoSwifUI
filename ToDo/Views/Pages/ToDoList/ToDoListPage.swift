@@ -67,16 +67,13 @@ struct ToDoListPage: View {
                         
                     }
                 }
-                else if modalSortIsOpened {
+                else if modalFiltersIsOpened {
                     ZStack {
                         cancallableBackground {
                             modalFiltersIsOpened = false
                         }
                         
-//                        SortingList(
-//                            chosenSortingMethod: $viewModel.sortingMethod,
-//                            chosenSortingMode: $viewModel.sortingMode
-//                        )
+                        FiltersList(chosenFilteringMethods: $viewModel.filters)
                     }
                 }
             }

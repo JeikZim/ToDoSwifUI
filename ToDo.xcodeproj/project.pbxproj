@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		441FA8532A57F356007AB04B /* CountableID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441FA8522A57F356007AB04B /* CountableID.swift */; };
 		442033C12A431F570047BF81 /* ToDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442033C02A431F570047BF81 /* ToDoApp.swift */; };
 		442033C32A431F570047BF81 /* ToDoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442033C22A431F570047BF81 /* ToDoList.swift */; };
 		442033C52A431F5A0047BF81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 442033C42A431F5A0047BF81 /* Assets.xcassets */; };
@@ -27,7 +28,7 @@
 		442EF5E72A55701B005FCA4C /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442EF5E62A55701B005FCA4C /* IconButton.swift */; };
 		442EF5ED2A557938005FCA4C /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442EF5EC2A557938005FCA4C /* FavoriteButton.swift */; };
 		442EF5EF2A559FFB005FCA4C /* FiltersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442EF5EE2A559FFB005FCA4C /* FiltersList.swift */; };
-		442EF5F32A55A02D005FCA4C /* FiltersEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442EF5F22A55A02D005FCA4C /* FiltersEnum.swift */; };
+		442EF5F32A55A02D005FCA4C /* FilteringMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442EF5F22A55A02D005FCA4C /* FilteringMethods.swift */; };
 		442EF5F52A55A04C005FCA4C /* FiltersRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442EF5F42A55A04C005FCA4C /* FiltersRow.swift */; };
 		4445A1712A544989007539DE /* SortingRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4445A1702A544989007539DE /* SortingRow.swift */; };
 		44B7CDE12A530A2C00F28CC6 /* SortingMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B7CDE02A530A2C00F28CC6 /* SortingMethods.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		441FA8522A57F356007AB04B /* CountableID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountableID.swift; sourceTree = "<group>"; };
 		442033BD2A431F570047BF81 /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		442033C02A431F570047BF81 /* ToDoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoApp.swift; sourceTree = "<group>"; };
 		442033C22A431F570047BF81 /* ToDoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoList.swift; sourceTree = "<group>"; };
@@ -56,7 +58,7 @@
 		442EF5E62A55701B005FCA4C /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		442EF5EC2A557938005FCA4C /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		442EF5EE2A559FFB005FCA4C /* FiltersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersList.swift; sourceTree = "<group>"; };
-		442EF5F22A55A02D005FCA4C /* FiltersEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersEnum.swift; sourceTree = "<group>"; };
+		442EF5F22A55A02D005FCA4C /* FilteringMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringMethods.swift; sourceTree = "<group>"; };
 		442EF5F42A55A04C005FCA4C /* FiltersRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersRow.swift; sourceTree = "<group>"; };
 		4445A1702A544989007539DE /* SortingRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingRow.swift; sourceTree = "<group>"; };
 		44B7CDE02A530A2C00F28CC6 /* SortingMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingMethods.swift; sourceTree = "<group>"; };
@@ -74,6 +76,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		441FA8512A57F346007AB04B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				441FA8522A57F356007AB04B /* CountableID.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		442033B42A431F570047BF81 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +103,7 @@
 		442033BF2A431F570047BF81 /* ToDo */ = {
 			isa = PBXGroup;
 			children = (
+				441FA8512A57F346007AB04B /* Protocols */,
 				442081B12A4454C600D3F18B /* DAL */,
 				442033CF2A431F730047BF81 /* Extensions */,
 				442033CE2A431F690047BF81 /* Views */,
@@ -150,9 +161,9 @@
 		442081A82A444BE800D3F18B /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
-				442EF5F02A55A004005FCA4C /* Filters */,
 				442418962A4EF57500C6B547 /* Misc */,
 				44B7CDDF2A530A1D00F28CC6 /* Sorting */,
+				442EF5F02A55A004005FCA4C /* Filters */,
 				442418952A4EF56900C6B547 /* Editor */,
 				442418942A4EF55C00C6B547 /* ToDo */,
 			);
@@ -225,8 +236,8 @@
 		442EF5F02A55A004005FCA4C /* Filters */ = {
 			isa = PBXGroup;
 			children = (
+				442EF5F22A55A02D005FCA4C /* FilteringMethods.swift */,
 				442EF5EE2A559FFB005FCA4C /* FiltersList.swift */,
-				442EF5F22A55A02D005FCA4C /* FiltersEnum.swift */,
 				442EF5F42A55A04C005FCA4C /* FiltersRow.swift */,
 			);
 			path = Filters;
@@ -318,10 +329,11 @@
 				442EF5EF2A559FFB005FCA4C /* FiltersList.swift in Sources */,
 				442EF5ED2A557938005FCA4C /* FavoriteButton.swift in Sources */,
 				442033C32A431F570047BF81 /* ToDoList.swift in Sources */,
+				441FA8532A57F356007AB04B /* CountableID.swift in Sources */,
 				442EF5F52A55A04C005FCA4C /* FiltersRow.swift in Sources */,
 				442081B52A44554E00D3F18B /* EditToDoItemViewModel.swift in Sources */,
 				442081A32A44116900D3F18B /* Date.swift in Sources */,
-				442EF5F32A55A02D005FCA4C /* FiltersEnum.swift in Sources */,
+				442EF5F32A55A02D005FCA4C /* FilteringMethods.swift in Sources */,
 				44B7CDE32A530A8C00F28CC6 /* SortingList.swift in Sources */,
 				442081A62A44166500D3F18B /* MainView.swift in Sources */,
 				442033C12A431F570047BF81 /* ToDoApp.swift in Sources */,

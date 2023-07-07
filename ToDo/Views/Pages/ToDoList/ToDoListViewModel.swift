@@ -9,12 +9,42 @@ import Foundation
 
 class ToDoListViewModel: ObservableObject {
     
-    @Published private(set) var toDoItems: [ToDoItem] = []
+    @Published private var toDoItems: [ToDoItem] = []
+    @Published private(set) var toDoItemsPrejection: [ToDoItem] = []
+    @Published var filters: Set<FilteringMethods> = []
     @Published var sortingMethod: SortingMethods = .none
     @Published var sortingMode: SortingModes = .none
     
     init() {
         ToDoService.instance.$items.assign(to: &$toDoItems)
+        $toDoItems.assign(to: &$toDoItemsPrejection)
+    }
+    
+    func filter() {
+        toDoItemsPrejection = toDoItems
+        
+        if filters.isEmpty { return }
+        
+        if filters.contains(.favorite) {
+            toDoItemsPrejection.removeAll(where: { !$0.isFavorite })
+        }
+        else {
+            for toDoitem in toDoItems
+            where toDoitem.isFavorite && !toDoItems.contains(toDoitem){
+                toDoItemsPrejection.append(toDoitem)
+            }
+        }
+        
+        
+        if filters.contains(.completed) {
+            toDoItemsPrejection.removeAll(where: { !$0.isCompleted })
+        }
+        else {
+            for toDoitem in toDoItems
+            where toDoitem.isCompleted && !toDoItems.contains(toDoitem) {
+                toDoItemsPrejection.append(toDoitem)
+            }
+        }
     }
     
     func sort() {

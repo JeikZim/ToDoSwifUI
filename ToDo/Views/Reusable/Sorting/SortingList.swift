@@ -39,13 +39,16 @@ struct SortingList: View {
             }
         }
         .cornerRadius(9)
-        .frame(width: 260, height: 240)
+        .frame(
+            width: 260,
+            height: CGFloat(sortingItems.count * 80)
+        )
         .offset(y: -32)
     }
 }
 
 
-struct SortingItem: Identifiable {
+struct SortingItem: Identifiable, CountableID {
     static var count: Int = 0
     
     var id: Int = incrementCount()
@@ -59,7 +62,7 @@ struct SortingItem: Identifiable {
         self.title = sortingMethod.rawValue
     }
     
-    private static func incrementCount() -> Int {
+    internal static func incrementCount() -> Int {
         count += 1
         return count
     }

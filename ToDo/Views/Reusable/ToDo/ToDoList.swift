@@ -19,36 +19,44 @@ struct ToDoItemsList<ToDoItemDestinationView: View>: View {
     let itemDestination: (ToDoItem) -> ToDoItemDestinationView
     
     var body: some View {
-        if viewModel.toDoItems.isEmpty {
-            emptyTitle()
-        } else {
-            ScrollView {
-                HStack(spacing: 14) {
-                    filterTextButton()
-                        .padding(.leading)
-                    
-                    filersButton()
-                    
-                    Spacer()
-                    
-                    sortTextButton()
-                    
-                    sortingChoiceButton()
-                        .padding(.trailing)
-                }
-                .frame(height: 36)
+        VStack {
+            HStack(spacing: 14) {
+                filterTextButton()
+                    .padding(.leading)
                 
-                toDoListView()
+                filersButton()
+                
+                Spacer()
+                
+                sortTextButton()
+                
+                sortingChoiceButton()
+                    .padding(.trailing)
             }
-            .onChange(of: viewModel.toDoItems, perform: sortingHandler)
-            .onChange(of: viewModel.sortingMethod, perform: sortingHandler)
-            .onChange(of: viewModel.sortingMode, perform: sortingHandler)
+            .frame(height: 36)
+            .padding(.bottom, 0)
+            
+            
+            if viewModel.toDoItemsPrejection.isEmpty {
+                emptyTitle()
+            } else {
+                ScrollView {
+                    toDoListView()
+                }
+            }
         }
+        .onChange(of: viewModel.toDoItemsPrejection, perform: { _ in
+            viewModel.sort()
+            viewModel.filter()
+        })
+        .onChange(of: viewModel.sortingMethod, perform: sortingHandler)
+        .onChange(of: viewModel.sortingMode, perform: sortingHandler)
+        .onChange(of: viewModel.filters, perform: filteringHandler)
     }
     
     private func toDoListView() -> some View {
         LazyVStack {
-            ForEach(viewModel.toDoItems) { item in
+            ForEach(viewModel.toDoItemsPrejection) { item in
                 NavigationLink(
                     destination: itemDestination(item),
                     tag: item,
@@ -62,7 +70,7 @@ struct ToDoItemsList<ToDoItemDestinationView: View>: View {
     }
     
     private func filterTextButton() -> some View {
-        Button(action: { modalSortIsOpened.toggle() }, label: {
+        Button(action: { modalFiltersIsOpened.toggle() }, label: {
             Text("Filters")
                 .font(.system(size: 22, weight: .regular))
         })
@@ -80,7 +88,7 @@ struct ToDoItemsList<ToDoItemDestinationView: View>: View {
     private func sortingChoiceButton() -> some View {
         IconButton(
             imageName: viewModel.sortingMode.rawValue,
-            action: { modalFiltersIsOpened.toggle() }
+            action: { modalSortIsOpened.toggle() }
         )
     }
     
@@ -92,13 +100,22 @@ struct ToDoItemsList<ToDoItemDestinationView: View>: View {
     }
     
     private func emptyTitle() -> some View {
-        Text("List is empty")
-            .font(.system(size: 24, weight: .bold))
-            .foregroundColor(.gray)
+        VStack {
+            Spacer()
+            Text("List is empty")
+                .font(.system(size: 24, weight: .bold))
+                .foregroundColor(.gray)
+            Spacer()
+        }
+        .offset(y: -60)
     }
     
     private func sortingHandler(_ eq: any Equatable)  {
         viewModel.sort()
+    }
+    
+    private func filteringHandler(_ eq: any Equatable)  {
+        viewModel.filter()
     }
 }
 

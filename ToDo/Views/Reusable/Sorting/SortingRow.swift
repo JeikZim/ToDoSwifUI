@@ -72,6 +72,7 @@ struct SortingRow: View {
     }
 }
 
+#if DEBUG
 struct SortingRow_Previews: PreviewProvider {
     @State
     static var chosenSortingMethod: SortingMethods = .none
@@ -83,3 +84,4 @@ struct SortingRow_Previews: PreviewProvider {
         SortingRow(title: "Basic", hasModes: false, sortingMethod: .none, chosenSortingMethod: $chosenSortingMethod, chosenSortingMode: $chosenSortingMode)
     }
 }
+#endif
