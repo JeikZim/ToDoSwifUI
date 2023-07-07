@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		441FA8532A57F356007AB04B /* CountableID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441FA8522A57F356007AB04B /* CountableID.swift */; };
+		441FA8652A58146C007AB04B /* ToDoListModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 441FA8632A58146C007AB04B /* ToDoListModel.xcdatamodeld */; };
+		441FA8752A584341007AB04B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441FA8742A584341007AB04B /* CoreDataManager.swift */; };
 		442033C12A431F570047BF81 /* ToDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442033C02A431F570047BF81 /* ToDoApp.swift */; };
 		442033C32A431F570047BF81 /* ToDoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442033C22A431F570047BF81 /* ToDoList.swift */; };
 		442033C52A431F5A0047BF81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 442033C42A431F5A0047BF81 /* Assets.xcassets */; };
@@ -37,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		441FA8522A57F356007AB04B /* CountableID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountableID.swift; sourceTree = "<group>"; };
+		441FA8642A58146C007AB04B /* ToDoListModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToDoListModel.xcdatamodel; sourceTree = "<group>"; };
+		441FA8742A584341007AB04B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		442033BD2A431F570047BF81 /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		442033C02A431F570047BF81 /* ToDoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoApp.swift; sourceTree = "<group>"; };
 		442033C22A431F570047BF81 /* ToDoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoList.swift; sourceTree = "<group>"; };
@@ -84,6 +88,22 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		441FA8542A580FEE007AB04B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				441FA8632A58146C007AB04B /* ToDoListModel.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		441FA8712A581A89007AB04B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				441FA8742A584341007AB04B /* CoreDataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		442033B42A431F570047BF81 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +123,8 @@
 		442033BF2A431F570047BF81 /* ToDo */ = {
 			isa = PBXGroup;
 			children = (
+				441FA8542A580FEE007AB04B /* Models */,
+				441FA8712A581A89007AB04B /* CoreData */,
 				441FA8512A57F346007AB04B /* Protocols */,
 				442081B12A4454C600D3F18B /* DAL */,
 				442033CF2A431F730047BF81 /* Extensions */,
@@ -329,7 +351,9 @@
 				442EF5EF2A559FFB005FCA4C /* FiltersList.swift in Sources */,
 				442EF5ED2A557938005FCA4C /* FavoriteButton.swift in Sources */,
 				442033C32A431F570047BF81 /* ToDoList.swift in Sources */,
+				441FA8752A584341007AB04B /* CoreDataManager.swift in Sources */,
 				441FA8532A57F356007AB04B /* CountableID.swift in Sources */,
+				441FA8652A58146C007AB04B /* ToDoListModel.xcdatamodeld in Sources */,
 				442EF5F52A55A04C005FCA4C /* FiltersRow.swift in Sources */,
 				442081B52A44554E00D3F18B /* EditToDoItemViewModel.swift in Sources */,
 				442081A32A44116900D3F18B /* Date.swift in Sources */,
@@ -549,6 +573,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		441FA8632A58146C007AB04B /* ToDoListModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				441FA8642A58146C007AB04B /* ToDoListModel.xcdatamodel */,
+			);
+			currentVersion = 441FA8642A58146C007AB04B /* ToDoListModel.xcdatamodel */;
+			path = ToDoListModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 442033B52A431F570047BF81 /* Project object */;
 }

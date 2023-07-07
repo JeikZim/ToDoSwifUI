@@ -34,9 +34,10 @@ class EditToDoItemViewModel: ObservableObject {
             return
             
         case .edit(let item):
-            ToDoService.instance.setFavorites(byItemId: item.id, newState: isFavorite)
-            
-            ToDoService.instance.setCompletion(byItemId: item.id, newState: isCompleted)
+            print(item.content)
+//            ToDoService.instance.setFavorites(byItemId: item.id, newState: isFavorite)
+//
+//            ToDoService.instance.setCompletion(byItemId: item.id, newState: isCompleted)
                         
         }
         onEnded()
@@ -48,11 +49,12 @@ class EditToDoItemViewModel: ObservableObject {
             ToDoService.instance.createItem(withContent: content)
             
         case .edit(let item):
-            ToDoService.instance.updateItem(content, forItemWithId: item.id)
-            
-            ToDoService.instance.setFavorites(byItemId: item.id, newState: isFavorite)
-            
-            ToDoService.instance.setCompletion(byItemId: item.id, newState: isCompleted)
+            print(item.content)
+//            ToDoService.instance.updateItem(content, forItemWithId: item.id)
+//
+//            ToDoService.instance.setFavorites(byItemId: item.id, newState: isFavorite)
+//
+//            ToDoService.instance.setCompletion(byItemId: item.id, newState: isCompleted)
         }
         
         onEnded()
@@ -64,9 +66,9 @@ class EditToDoItemViewModel: ObservableObject {
             return
         }
         
-        ToDoService.instance.removeItem(byId: item.id)
-        
         onEnded()
+        
+        ToDoService.instance.removeItem(byId: item.id)
     }
 }
 

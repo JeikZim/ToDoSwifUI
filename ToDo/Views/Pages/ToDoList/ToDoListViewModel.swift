@@ -15,9 +15,14 @@ class ToDoListViewModel: ObservableObject {
     @Published var sortingMethod: SortingMethods = .none
     @Published var sortingMode: SortingModes = .none
     
+    
     init() {
         ToDoService.instance.$items.assign(to: &$toDoItems)
         $toDoItems.assign(to: &$toDoItemsPrejection)
+    }
+    
+    func getAllItems() {
+        ToDoService.instance.updateItemListFromCoreData()
     }
     
     func filter() {

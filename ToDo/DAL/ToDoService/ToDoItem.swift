@@ -6,36 +6,67 @@
 //
 
 import Foundation
+import CoreData
 
 struct ToDoItem: Identifiable, Hashable {
-    let id: String
-    let date: Date
-    var content: String
-    var isCompleted: Bool
-    var isFavorite: Bool
+    let item: ToDoItemCD
     
-    init (id: String = UUID().uuidString, content: String) {
-        self.id = id
-        self.content = content
-        self.date = Date()
-        self.isCompleted = false
-        self.isFavorite = false
+    var id: NSManagedObjectID {
+        return item.objectID
     }
+    
+    var content: String {
+        return item.content ?? ""
+    }
+    
+    var date: Date {
+        return item.date ?? Date()
+    }
+    
+    var isCompleted: Bool {
+        return item.isCompleted
+    }
+    
+    var isFavorite: Bool {
+        return item.isFavorite
+    }
+    
+//    let id: String
+//    let date: Date
+//    var content: String
+//    var isCompleted: Bool
+//    var isFavorite: Bool
+//
+//    init (id: String = UUID().uuidString, content: String) {
+//        self.id = id
+//        self.content = content
+//        self.date = Date()
+//        self.isCompleted = false
+//        self.isFavorite = false
+//    }
+
+    //    init (item: ToDoItemCD) {
+    //        self.id = item.id ?? UUID().uuidString
+    //        self.content = item.content ?? ""
+    //        self.date = item.date ?? Date()
+    //        self.isCompleted = item.isCompleted
+    //        self.isFavorite = item.isFavorite
+    //    }
 }
 
 
-#if DEBUG
-extension ToDoItem {
-    
-    static func mockItem1() -> ToDoItem {
-        ToDoItem(content: "Small")
-    }
-    static func mockItem2() -> ToDoItem {
-        ToDoItem(content: "Medium lorem ipsum and some text bla bla bla...")
-    }
-    static func mockItems() -> [ToDoItem] {
-        [mockItem1(), mockItem2()]
-    }
-    
-}
-#endif
+//#if DEBUG
+//extension ToDoItem {
+//
+//    static func mockItem1() -> ToDoItem {
+//        ToDoItem(content: "Small")
+//    }
+//    static func mockItem2() -> ToDoItem {
+//        ToDoItem(content: "Medium lorem ipsum and some text bla bla bla...")
+//    }
+//    static func mockItems() -> [ToDoItem] {
+//        [mockItem1(), mockItem2()]
+//    }
+//
+//}
+//#endif

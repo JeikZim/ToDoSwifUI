@@ -21,6 +21,8 @@ struct ToDoListPage: View {
     @StateObject
     var viewModel = ToDoListViewModel()
     
+    init() { viewModel.getAllItems() } 
+    
     var body: some View {
         NavigationView {
                 ZStack {

@@ -72,11 +72,11 @@ struct ToDoItemRow: View {
     }
 }
 
-#if DEBUG
-struct ToDoRow_Previews: PreviewProvider {
-    static var previews: some View {
-        ToDoItemRow(item: ToDoItem.mockItem1())
-            .padding()
-    }
-}
-#endif
+//#if DEBUG
+//struct ToDoRow_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ToDoItemRow(item: ToDoItem.mockItem1())
+//            .padding()
+//    }
+//}
+//#endif

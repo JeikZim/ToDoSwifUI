@@ -17,12 +17,12 @@ class ToDoItemViewModel: ObservableObject {
     init(item: ToDoItem) {
         self.item = item
         
-        self.toggleCompletion = {
-            ToDoService.instance.toggleCompletion(byItemId: item.id)
+        toggleCompletion = {
+//            ToDoService.instance.toggleCompletion(byItemId: item.id)
         }
         
-        self.toggleFavorite = {
-            ToDoService.instance.toggleFavorite(byItemId: item.id)
+        toggleFavorite = {
+//            ToDoService.instance.toggleFavorite(byItemId: item.id)
         }
     }
 }
