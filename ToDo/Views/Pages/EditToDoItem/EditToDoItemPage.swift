@@ -43,18 +43,22 @@ struct EditToDoItemPage: View {
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                FavoriteButton(
-                    fontSize: 18,
-                    isFavorite: viewModel.isFavorite,
-                    action: { viewModel.isFavorite.toggle() }
-                )
+                if viewModel.mode.isEditing {
+                    FavoriteButton(
+                        fontSize: 18,
+                        isFavorite: viewModel.isFavorite,
+                        action: { viewModel.isFavorite.toggle() }
+                    )
+                }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                CompleteCheckBox(
-                    size: 24 ,fontSize: 14,
-                    isSet: viewModel.isCompleted,
-                    action: { viewModel.isCompleted.toggle() }
-                )
+                if viewModel.mode.isEditing {
+                    CompleteCheckBox(
+                        size: 24 ,fontSize: 14,
+                        isSet: viewModel.isCompleted,
+                        action: { viewModel.isCompleted.toggle() }
+                    )
+                }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 if viewModel.mode.isEditing {
