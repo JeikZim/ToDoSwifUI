@@ -11,79 +11,106 @@ import CoreData
 class ToDoService {
     private init() { }
     static let instance = ToDoService()
+    private let CDManager = CoreDataManager.shared
     
     @Published
     private(set) var items: [ToDoItem] = []
     
-    func updateItemListFromCoreData() {
-        items = CoreDataManager.shared.getAllItems().map(ToDoItem.init)
-    }
     
     func createItem(withContent content: String) {
-        let item = ToDoItemCD(context: CoreDataManager.shared.viewContext)
-        item.id = UUID().uuidString
+        let item = ToDoItemCD(context: CDManager.viewContext)
         item.content = content
+        item.creationDate = Date()
         item.date = Date()
-        item.isFavorite = false
-        item.isCompleted = false
         
-        CoreDataManager.shared.save()
+        CDManager.save()
         updateItemListFromCoreData()
-// Without Core Data       items.append(ToDoItem(content: content))
+        
+        // Without Core Data       items.append(ToDoItem(content: content))
     }
     
     func removeItem(byId id: NSManagedObjectID) {
-        items.forEach { el in
-            if el.id == id { CoreDataManager.shared.delete(el.item) }
+        guard let item = CDManager.getItem(byId: id) else {
+            return
         }
         
-        CoreDataManager.shared.save()
+        CDManager.delete(item)
+        
         updateItemListFromCoreData()
         
         // Without Core Data       items.removeAll(where: { $0.id == id })
     }
     
-    private func updateItemField(byItemId id: NSManagedObjectID, action: (Int) -> Void) {
-        guard let index = items.firstIndex(where: { $0.id == id })
-        else {
+    func updateItemListFromCoreData() {
+        items = CDManager.getAllItems().map(ToDoItem.init)
+    }
+    
+    func updateItem(_ content: String, forItemWithId id: NSManagedObjectID) {
+        CDManager.updateItemField(byId: id, forKey: "content", value: content)
+        CDManager.updateItemField(byId: id, forKey: "date", value: Date())
+        
+        updateItemListFromCoreData()
+    //        updateItemField(byItemId: id) { index in
+    //            items[index].content = content
+    //        }
+    }
+
+    func setFavorites(byItemId id: NSManagedObjectID, newState isFavorite: Bool) {
+        CDManager.updateItemField(byId: id, forKey: "isFavorite", value: isFavorite)
+
+        updateItemListFromCoreData()
+        
+    //        updateItemField(byItemId: id) { index in
+    //            items[index].isFavorite = isFavorite
+    //        }
+    }
+
+    func setCompletion(byItemId id: NSManagedObjectID, newState isCompleted: Bool) {
+        CDManager.updateItemField(byId: id, forKey: "isCompleted", value: isCompleted)
+
+        updateItemListFromCoreData()
+        
+    //        updateItemField(byItemId: id) { index in
+    //            items[index].isCompleted = isCompleted
+    //        }
+    }
+
+    func toggleFavorite(byItemId id: NSManagedObjectID) {
+        
+        guard let item = CDManager.getItem(byId: id) else {
             return
         }
-                
-        action(index)
-    }
-    
-    private func saveToCoreData() {
+
+        CDManager.updateItemField(byId: id, forKey: "isFavorite", value: !item.isFavorite)
         
+        updateItemListFromCoreData()
+        
+    //        updateItemField(byItemId: id) { index in
+    //            items[index].isFavorite.toggle()
+    //        }
+    }
+
+    func toggleCompletion(byItemId id: NSManagedObjectID) {
+        guard let item = CDManager.getItem(byId: id) else {
+            return
+        }
+
+        CDManager.updateItemField(byId: id, forKey: "isCompleted", value: !item.isCompleted)
+        
+        updateItemListFromCoreData()
+        
+    //        updateItemField(byItemId: id) { index in
+    //            items[index].isCompleted.toggle()
+    //        }
     }
     
-//    func updateItem(_ content: String, forItemWithId id: String) {
-//        updateItemField(byItemId: id) { index in
-//            items[index].content = content
-//        }
-//    }
-//
-//    func setFavorites(byItemId id: String, newState isFavorite: Bool) {
-//        updateItemField(byItemId: id) { index in
-//            items[index].isFavorite = isFavorite
-//        }
-//    }
-//
-//    func setCompletion(byItemId id: String, newState isCompleted: Bool) {
-//        updateItemField(byItemId: id) { index in
-//            items[index].isCompleted = isCompleted
-//        }
-//    }
-//
-//    func toggleFavorite(byItemId id: String) {
-//        updateItemField(byItemId: id) { index in
-//            items[index].isFavorite.toggle()
-//        }
-//    }
-//
-//    func toggleCompletion(byItemId id: String) {
-//        updateItemField(byItemId: id) { index in
-//            items[index].isCompleted.toggle()
-//        }
-//    }
+    //    private func updateItemField(byItemId id: NSManagedObjectID, action: (Int) -> Void) {
+    //        guard let index = items.firstIndex(where: { $0.id == id })
+    //        else {
+    //            return
+    //        }
+    //
+    //        action(index)
+    //    }
 }
 

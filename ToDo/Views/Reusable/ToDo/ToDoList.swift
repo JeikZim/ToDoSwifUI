@@ -119,23 +119,23 @@ struct ToDoItemsList<ToDoItemDestinationView: View>: View {
     }
 }
 
-//#if DEBUG
-//struct ToDoItemsList_Previews: PreviewProvider {
-//    @State
-//    static var selectedItem: ToDoItem? = .mockItem1()
-//    @State
-//    static var modalSortIsOpened: Bool = false
-//    @State
-//    static var modalFiltersIsOpened: Bool = false
-//
-//    static var previews: some View {
-//        ToDoItemsList(
-//            modalSortIsOpened: $modalSortIsOpened,
-//            modalFiltersIsOpened: $modalFiltersIsOpened,
-//            selectedItem: $selectedItem,
-//            viewModel: ToDoListViewModel(),
-//            itemDestination: {_ in EmptyView()}
-//        )
-//    }
-//}
-//#endif
+#if DEBUG
+struct ToDoItemsList_Previews: PreviewProvider {
+    @State
+    static var selectedItem: ToDoItem? = .mockItem1()
+    @State
+    static var modalSortIsOpened: Bool = false
+    @State
+    static var modalFiltersIsOpened: Bool = false
+
+    static var previews: some View {
+        ToDoItemsList(
+            modalSortIsOpened: $modalSortIsOpened,
+            modalFiltersIsOpened: $modalFiltersIsOpened,
+            selectedItem: $selectedItem,
+            viewModel: ToDoListViewModel(),
+            itemDestination: {_ in EmptyView()}
+        )
+    }
+}
+#endif

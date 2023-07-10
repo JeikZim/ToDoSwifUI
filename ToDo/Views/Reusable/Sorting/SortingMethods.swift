@@ -10,6 +10,7 @@ import Foundation
 enum SortingMethods: String, Equatable {
     case alphabet = "Alphabetically"
     case date = "By date"
+    case creationDate = "By creation"
     case none = "Basic"
     
 }

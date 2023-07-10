@@ -44,9 +44,22 @@ struct ToDoItemRow: View {
                 }
                 .padding()
                 
-                FavoriteButton(isFavorite: viewModel.item.isFavorite, action: viewModel.toggleFavorite)
+                VStack {
+                    FavoriteButton(isFavorite: viewModel.item.isFavorite, action: viewModel.toggleFavorite)
+                        .padding(.all)
+                        .padding(.trailing, -6)
+                    
+                    Spacer()
+                }
+                .padding(.bottom)
                 
-                CompleteCheckBox(isSet: viewModel.item.isCompleted, action: viewModel.toggleCompletion)
+                VStack {
+                    CompleteCheckBox(isSet: viewModel.item.isCompleted, action: viewModel.toggleCompletion)
+                        .padding(.leading, -6)
+                    
+                    Spacer()
+                }
+                .padding(.bottom)
             }
         }
         .fixedSize(horizontal: false, vertical: true)
@@ -72,11 +85,11 @@ struct ToDoItemRow: View {
     }
 }
 
-//#if DEBUG
-//struct ToDoRow_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ToDoItemRow(item: ToDoItem.mockItem1())
-//            .padding()
-//    }
-//}
-//#endif
+#if DEBUG
+struct ToDoRow_Previews: PreviewProvider {
+    static var previews: some View {
+        ToDoItemRow(item: ToDoItem.mockItem1())
+            .padding()
+    }
+}
+#endif

@@ -35,9 +35,9 @@ class EditToDoItemViewModel: ObservableObject {
             
         case .edit(let item):
             print(item.content)
-//            ToDoService.instance.setFavorites(byItemId: item.id, newState: isFavorite)
-//
-//            ToDoService.instance.setCompletion(byItemId: item.id, newState: isCompleted)
+            ToDoService.instance.setFavorites(byItemId: item.id, newState: isFavorite)
+
+            ToDoService.instance.setCompletion(byItemId: item.id, newState: isCompleted)
                         
         }
         onEnded()
@@ -50,11 +50,11 @@ class EditToDoItemViewModel: ObservableObject {
             
         case .edit(let item):
             print(item.content)
-//            ToDoService.instance.updateItem(content, forItemWithId: item.id)
-//
-//            ToDoService.instance.setFavorites(byItemId: item.id, newState: isFavorite)
-//
-//            ToDoService.instance.setCompletion(byItemId: item.id, newState: isCompleted)
+            ToDoService.instance.updateItem(content, forItemWithId: item.id)
+
+            ToDoService.instance.setFavorites(byItemId: item.id, newState: isFavorite)
+
+            ToDoService.instance.setCompletion(byItemId: item.id, newState: isCompleted)
         }
         
         onEnded()

@@ -35,7 +35,7 @@ class CoreDataManager {
     
     func getAllItems() -> [ToDoItemCD] {
         let request: NSFetchRequest<ToDoItemCD> = ToDoItemCD.fetchRequest()
-        
+    
         do {
             return try viewContext.fetch(request)
         } catch let error { 
@@ -44,12 +44,20 @@ class CoreDataManager {
         }
     }
     
-    func delete(_ id: NSManagedObjectID) {
+    func updateItemField(byId id: NSManagedObjectID, forKey key: String, value: Any?) {
         do {
-            try CoreDataManager.shared.delete(getItem(byId: id) ?? nil)
+            try viewContext
+                .existingObject(with: id)
+                .setValue(value, forKey: key)
+            save()
         } catch let error {
-            print(error)
+            print("Error with updating: \(error)")
         }
+    }
+    
+    func delete(_ task: ToDoItemCD) {
+        viewContext.delete(task)
+        save()
     }
     
     func save() {

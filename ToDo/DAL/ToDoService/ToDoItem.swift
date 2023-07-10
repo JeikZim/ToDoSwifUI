@@ -23,6 +23,10 @@ struct ToDoItem: Identifiable, Hashable {
         return item.date ?? Date()
     }
     
+    var creationDate: Date {
+        return item.creationDate ?? Date()
+    }
+    
     var isCompleted: Bool {
         return item.isCompleted
     }
@@ -55,18 +59,25 @@ struct ToDoItem: Identifiable, Hashable {
 }
 
 
-//#if DEBUG
-//extension ToDoItem {
-//
-//    static func mockItem1() -> ToDoItem {
-//        ToDoItem(content: "Small")
-//    }
-//    static func mockItem2() -> ToDoItem {
-//        ToDoItem(content: "Medium lorem ipsum and some text bla bla bla...")
-//    }
-//    static func mockItems() -> [ToDoItem] {
-//        [mockItem1(), mockItem2()]
-//    }
-//
-//}
-//#endif
+#if DEBUG
+extension ToDoItem {
+    static func mockItem1() -> ToDoItem {
+        let item = ToDoItemCD(context: CoreDataManager.shared.viewContext)
+        
+        item.content = "Small"
+        
+        return ToDoItem(item: item)
+    }
+    static func mockItem2() -> ToDoItem {
+        let item = ToDoItemCD(context: CoreDataManager.shared.viewContext)
+        
+        item.content = "Medium lorem ipsum and some text bla bla bla..."
+        
+        return ToDoItem(item: item)
+    }
+    static func mockItems() -> [ToDoItem] {
+        [mockItem1(), mockItem2()]
+    }
+
+}
+#endif

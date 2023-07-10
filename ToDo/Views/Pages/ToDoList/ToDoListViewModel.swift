@@ -12,13 +12,13 @@ class ToDoListViewModel: ObservableObject {
     @Published private var toDoItems: [ToDoItem] = []
     @Published private(set) var toDoItemsPrejection: [ToDoItem] = []
     @Published var filters: Set<FilteringMethods> = []
-    @Published var sortingMethod: SortingMethods = .none
-    @Published var sortingMode: SortingModes = .none
-    
+    @Published var sortingMethod: SortingMethods = .date
+    @Published var sortingMode: SortingModes = .DESC
     
     init() {
         ToDoService.instance.$items.assign(to: &$toDoItems)
         $toDoItems.assign(to: &$toDoItemsPrejection)
+        sort() 
     }
     
     func getAllItems() {
@@ -54,30 +54,41 @@ class ToDoListViewModel: ObservableObject {
     
     func sort() {
         switch sortingMethod {
-        case .date:
-            switch sortingMode {
-            case .ASC:
-                toDoItems.sort(by: { $0.date < $1.date })
-                
-            case .DESC:
-                toDoItems.sort(by: { $0.date > $1.date })
-                
+            case .alphabet:
+                switch sortingMode {
+                case .ASC:
+                    toDoItems.sort(by: { $0.content < $1.content })
+                    
+                case .DESC:
+                    toDoItems.sort(by: { $0.content > $1.content })
+                    
+                case .none:
+                    toDoItems.sort(by: { $0.content > $1.content })
+                }
+            case .date:
+                switch sortingMode {
+                case .ASC:
+                    toDoItems.sort(by: { $0.date < $1.date })
+                    
+                case .DESC:
+                    toDoItems.sort(by: { $0.date > $1.date })
+                    
+                case .none:
+                    toDoItems.sort(by: { $0.date > $1.date })
+                }
+            case .creationDate:
+                switch sortingMode {
+                case .ASC:
+                    toDoItems.sort(by: { $0.creationDate < $1.creationDate })
+                    
+                case .DESC:
+                    toDoItems.sort(by: { $0.creationDate > $1.creationDate })
+                    
+                case .none:
+                    toDoItems.sort(by: { $0.creationDate > $1.creationDate })
+                }
             case .none:
-                toDoItems.sort(by: { $0.date > $1.date })
-            }
-        case .alphabet:
-            switch sortingMode {
-            case .ASC:
-                toDoItems.sort(by: { $0.content < $1.content })
-                
-            case .DESC:
-                toDoItems.sort(by: { $0.content > $1.content })
-                
-            case .none:
-                toDoItems.sort(by: { $0.content > $1.content })
-            }
-        case .none:
-            toDoItems.sort(by: { $0.date < $1.date })
+                toDoItems.sort(by: { $0.creationDate > $1.creationDate})
         }
     }
 }

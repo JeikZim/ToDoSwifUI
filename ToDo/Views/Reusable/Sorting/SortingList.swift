@@ -15,7 +15,8 @@ struct SortingList: View {
     var sortingItems: [SortingItem] = [
         SortingItem(sortingMethod: .alphabet, hasModes: true),
         SortingItem(sortingMethod: .date, hasModes: true),
-        SortingItem(sortingMethod: .none, hasModes: false)
+        SortingItem(sortingMethod: .creationDate, hasModes: true)
+//        SortingItem(sortingMethod: .none, hasModes: false)
     ]
     
     var body: some View {

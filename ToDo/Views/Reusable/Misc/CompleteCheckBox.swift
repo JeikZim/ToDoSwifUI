@@ -37,8 +37,9 @@ struct CompleteCheckBox: View {
                 Image(systemName: imageName)
                     .foregroundColor(isSet ? .green : primaryColor.opacity(0))
                     .font(.system(size: fontSize))
-                    .padding(.all, 24)
+                    .padding(.all, 6)
             }
+            .padding(.all)
             .onTapGesture {
                 action()
             }

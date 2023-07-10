@@ -35,6 +35,8 @@ struct FavoriteButton: View {
             .onTapGesture {
                 action()
             }
+        
+
     }
 }
 
